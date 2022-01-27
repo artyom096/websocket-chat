@@ -7,7 +7,6 @@ import InputGroup from "../../components/InputGroup"
 import socket from "../../server/socket"
 import { auth, joinNewUser } from "../../store/AuthSlice"
 import { RootState } from "../../store/store"
-import axios from "axios"
 
 const Enter = () => {
 

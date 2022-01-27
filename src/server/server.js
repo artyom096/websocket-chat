@@ -31,6 +31,19 @@ app.get('/rooms/:id', (req, res) => {
     res.json(users)
 })
 
+app.get('/messages/:id', (req, res) => {
+  const { id } = req.params
+  let messages = []
+
+  if(rooms.get(id)){
+    messages = rooms.get(id).get("messages")
+  } else {
+    messages = []
+  }
+
+  res.json(messages)
+})
+
 app.post('/auth', (req, res) => {
     const { roomID } = req.body;
     if (!rooms.has(roomID)) {
@@ -51,8 +64,16 @@ io.on("connection", (socket) => {
         if(rooms.get(roomID)){
           rooms.get(roomID).get("users").set(socket.id, userName)
           const users = [...rooms.get(roomID).get("users").values()]
-          socket.to(roomID).emit('SET_NEW_USERS', users);
+          socket.to(roomID).emit("SET_NEW_USERS", users);
         }
+    })
+
+    socket.on("SEND_MESSAGE", ({inputValue, id}) => {
+      if(rooms.get(id)){
+        rooms.get(id).get("messages").push(inputValue)
+        const messages = rooms.get(id).get("messages")
+        socket.to(id).emit("SEND_MESSAGE", messages)
+      }
     })
 
     socket.on("disconnect", () => {

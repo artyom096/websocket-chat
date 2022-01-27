@@ -3,34 +3,40 @@ import "./ChatStyles.scss"
 import SendInput from "../SendInput"
 import { useParams } from "react-router"
 import socket from "../../server/socket"
-import axios from "axios"
-import { useDispatch } from "react-redux"
-import { getAllUsers } from "../../store/AuthSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { getAllMessages, getAllUsers } from "../../store/ChatSlice"
+import { RootState, useAppDispatch } from "../../store/store"
 // messagesRef.current.scroll(0, messagesRef.current.scrollHeight);
 const Chat = () => {
 
     const { id } = useParams()
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
-    const [users, setUsers] = React.useState<string[]>()
+    const [users, setUsers] = React.useState<string[]>([])
+    const [messages, setMessages] = React.useState<string[]>([])
+    const [inputValue, setInputValue] = React.useState<string>("")
 
     React.useEffect(() => {
-        const getUsers = async () => {
-            const {data} = await axios.get(`/rooms/${id}`)
-            setUsers(data)
-        }
-
-        getUsers()
-
-        dispatch(getAllUsers(id as string))
+        dispatch(getAllUsers(id as string)).then(({payload}) => setUsers(payload))
+        dispatch(getAllMessages(id as string)).then(({payload}) => setMessages(payload))
     }, [])
 
     React.useEffect(() => {
         socket.on("SET_NEW_USERS", (users) => {
             setUsers(users)
         })
+
+        socket.on("SEND_MESSAGE", (messages) => {
+            setMessages(messages)
+        })
     }, [])
+
+    const sendMessage = () => {
+        socket.emit("SEND_MESSAGE", ({inputValue, id}))
+        setMessages([...messages, inputValue])
+        setInputValue("")
+    }
 
     return (
         <div className="ChatContainer">
@@ -48,17 +54,19 @@ const Chat = () => {
 
             <div className="MessagesBlock">
                 <div className="MessagesContainer">
-                    <div>
-                        <div className="MessageLeft">skmwkdms</div>
-                    </div>
-                    <div className="MessageRightContainer">
-                        <div className="MessageRight">smjcnwkxsm</div>
-                    </div>
-                    <div className="MessageRightContainer">
-                        <div className="MessageRight">HELLO</div>
-                    </div>
+                    {messages.map((item, index) => {
+                        return (
+                            <div key={item + index}>
+                                <div className="MessageLeft">{item}</div>
+                            </div>
+                        )
+                    })}
                 </div>
-                <SendInput />
+                <SendInput
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onClick={sendMessage}
+                />
             </div>
         </div>
     )

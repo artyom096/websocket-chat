@@ -10,7 +10,7 @@ export interface AuthState {
 const initialState: AuthState = {
   isAuth: false,
   roomID: "",
-  userName: ""
+  userName: "",
 }
 
 interface IAuthData {
@@ -25,13 +25,6 @@ export const joinNewUser = createAsyncThunk(
   }
 )
 
-export const getAllUsers = createAsyncThunk(
-  '/rooms/:id',
-  async (id: string) => {
-    await axios.get(`/rooms/${id}`)
-  }
-)
-
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -40,7 +33,7 @@ export const authSlice = createSlice({
       state.isAuth = true
       state.roomID = payload.roomID
       state.userName = payload.userName
-    },
+    }
   }
 })
 

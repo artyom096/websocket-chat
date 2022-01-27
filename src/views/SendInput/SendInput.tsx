@@ -2,11 +2,17 @@ import React from "react";
 import "./SendInputStyles.scss"
 import Button from "../../components/Button";
 
-const SendInput = () => {
+interface ISendInputProps {
+    value: string;
+    onClick: () => void;
+    onChange: React.ChangeEventHandler<HTMLTextAreaElement>
+}
+
+const SendInput: React.FC<ISendInputProps> = ({onClick, onChange, value}) => {
     return (
         <div className="SendInputContainer">
-            <textarea cols={3} className="SendInput" />
-            <Button>Отправить</Button>
+            <textarea value={value} onChange={onChange} cols={3} className="SendInput" />
+            <Button onClick={onClick}>Отправить</Button>
         </div>
     )
 }
