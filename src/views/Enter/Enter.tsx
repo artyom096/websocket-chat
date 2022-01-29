@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
 import Button from "../../components/Button"
 import InputGroup from "../../components/InputGroup"
-import socket from "../../../server/socket"
+import socket from "../../utils/socket"
 import { auth, joinNewUser } from "../../store/AuthSlice"
 import { RootState } from "../../store/store"
 
