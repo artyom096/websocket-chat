@@ -1,7 +1,7 @@
 {
   "name": "chat",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://web-chatik.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
