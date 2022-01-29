@@ -57,7 +57,7 @@ const Chat = () => {
         <div className="ChatContainer">
             <div className="InfoBlock">
                 <header className="RoomHeader">
-                    Комната номер {id}
+                    Комната: {id}
                 </header>
                 <span className="OnlineCounter">Онлайн ({users?.length || 0}) :</span>
                 <div className="UsersContainer">
