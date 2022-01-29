@@ -36,6 +36,6 @@ export interface ChatState {
 export interface ISendInputProps {
     value: string;
     onClick: () => void;
-    onKeyPress: (e: any) => void;
+    onKeyPress: (e: React.KeyboardEvent<Element>) => void;
     onChange: React.ChangeEventHandler<HTMLTextAreaElement>;
 }
