@@ -33,8 +33,6 @@ export const chatSlice = createSlice({
         state.users = payload
     })
     .addCase(getAllMessages.fulfilled, (state: ChatState, {payload}: PayloadAction<IMessages[]>) => {
-      console.log(payload);
-      
         state.messages = payload
     })
   },
