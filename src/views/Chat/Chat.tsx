@@ -17,6 +17,7 @@ const Chat = () => {
     const dispatch = useAppDispatch()
     const name = useSelector((state: RootState) => state.auth.userName)
     const isAuth = useSelector((state: RootState) => state.auth.isAuth)
+console.log(isAuth);
 
     const [users, setUsers] = React.useState<string[]>([])
     const [userName, setUserName] = React.useState<string>(name)
