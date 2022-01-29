@@ -1,4 +1,5 @@
 const express = require('express');
+const jsonServer = require('json-server')
 const cors = require("cors")
 const dotenv = require("dotenv")
 
@@ -10,11 +11,16 @@ dotenv.config()
 
 const corsOptions = {
     "origin": "*"
-  }
+}
+
+const middlewares = jsonServer.defaults({
+  static: './build',
+})
 
 const PORT = process.env.PORT || 5000
 const rooms = new Map()
 
+app.use(middlewares)
 app.use(express.json())
 app.use(cors(corsOptions))
 
