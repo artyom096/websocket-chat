@@ -1,5 +1,5 @@
 import React from "react"
-import { useNavigate, useParams } from "react-router"
+import { Navigate, useNavigate, useParams } from "react-router"
 import { useSelector } from "react-redux"
 import "./ChatStyles.scss"
 import SendInput from "../SendInput"
@@ -11,13 +11,11 @@ import { IMessages } from "../../utils/types"
 const Chat = () => {
 
     const { id } = useParams()
-    const history = useNavigate()
     const messagesRef: React.RefObject<HTMLDivElement> = React.useRef(null)
+    const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
     const name = useSelector((state: RootState) => state.auth.userName)
-    const isAuth = useSelector((state: RootState) => state.auth.isAuth)
-console.log(isAuth);
 
     const [users, setUsers] = React.useState<string[]>([])
     const [userName, setUserName] = React.useState<string>(name)
@@ -25,10 +23,11 @@ console.log(isAuth);
     const [inputValue, setInputValue] = React.useState<string>("")
 
     React.useEffect(() => {
-        if(!isAuth){
-            history("/", {replace: true})
-          }
-        setUserName(name)
+        if(name){
+            setUserName(name)
+        } else {
+            navigate("/")
+        }
     }, [])
 
     React.useEffect(() => {
