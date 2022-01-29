@@ -20,7 +20,7 @@ const Enter = () => {
     const isAuth = useSelector((state: RootState) => state.auth.isAuth)
 
     React.useEffect(() => {
-        !isAuth ? navigate("/") : navigate(`/chat`)
+        !isAuth ? navigate("/") : navigate(`/chat/${roomID}`)
     }, [isAuth])
 
     const joinChat = async (e: React.FormEvent<HTMLFormElement>) => {
