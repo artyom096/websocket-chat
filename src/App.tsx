@@ -1,11 +1,22 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { RootState } from './store/store';
 import Chat from './views/Chat';
 import Enter from './views/Enter';
 import ErrorPage from './views/ErrorPage';
 import SomethingWentWrong from './views/SomethingWentWrong';
 
 function App() {
+  const isAuth = useSelector((state: RootState) => state.auth.isAuth)
+  const history = useNavigate()
+
+  React.useEffect(() => {
+    if(!isAuth){
+      history("/")
+    }
+  }, [])
+
   return (
       <BrowserRouter>
         <Routes>
