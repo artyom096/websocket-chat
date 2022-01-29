@@ -23,6 +23,11 @@ const rooms = new Map()
 app.use(middlewares)
 app.use(express.json())
 app.use(cors(corsOptions))
+app.use((req, res) => {
+  if(res.status(404)){
+    app.get("/")
+  }
+})
 
 app.get('/rooms/:id', (req, res) => {
     const { id } = req.params
