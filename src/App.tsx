@@ -13,7 +13,7 @@ function App() {
   return (
       <Routes>
         <Route path="/" element={<Enter />}/>
-        <Route path="/chat/:id" element={isAuth ? <Chat /> : <Navigate to="/" />}/>
+        <Route path="/chat" element={isAuth ? <Chat /> : <Navigate to="/" />}/>
         <Route path="/wrong" element={<SomethingWentWrong />}/>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
