@@ -44,18 +44,19 @@ const Chat = () => {
         messagesRef.current && messagesRef.current.scroll(0, messagesRef.current.scrollHeight)
     }, [messages])
 
-    const sendMessage = (e?: React.KeyboardEvent<Element>) => {
-        if(!e){
-            socket.emit("SEND_MESSAGE", ({inputValue, userName, id}))
-            setMessages([...messages, {message: inputValue, userName}])
-            setInputValue("")
-        }
-        else if(e.key === "Enter"){
+    const sendMessagePress = (e: React.KeyboardEvent<Element>) => {
+        if(e.key === "Enter"){
             e.preventDefault()
             socket.emit("SEND_MESSAGE", ({inputValue, userName, id}))
             setMessages([...messages, {message: inputValue, userName}])
             setInputValue("")
         }
+    }
+
+    const sendMessage = () => {
+        socket.emit("SEND_MESSAGE", ({inputValue, userName, id}))
+        setMessages([...messages, {message: inputValue, userName}])
+        setInputValue("")
     }
 
     return (
@@ -98,7 +99,7 @@ const Chat = () => {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onClick={sendMessage}
-                        onKeyPress={(e: React.KeyboardEvent<Element>) => sendMessage(e)}
+                        onKeyPress={(e: React.KeyboardEvent<Element>) => sendMessagePress(e)}
                     />
                 </div>
             </div>
