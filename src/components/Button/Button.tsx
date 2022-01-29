@@ -1,11 +1,6 @@
 import React from "react";
+import { IButtonProps } from "../../utils/types";
 import "./ButtonStyles.scss"
-
-interface IButtonProps {
-    children: React.ReactChild | string;
-    disabled?: boolean;
-    onClick?: () => void;
-}
 
 const Button: React.FC<IButtonProps> = ({children, disabled, onClick}) => {
     return (

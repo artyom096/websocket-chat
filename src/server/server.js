@@ -68,9 +68,9 @@ io.on("connection", (socket) => {
         }
     })
 
-    socket.on("SEND_MESSAGE", ({inputValue, id}) => {
+    socket.on("SEND_MESSAGE", ({inputValue, userName, id}) => {
       if(rooms.get(id)){
-        rooms.get(id).get("messages").push(inputValue)
+        rooms.get(id).get("messages").push({message: inputValue, userName})
         const messages = rooms.get(id).get("messages")
         socket.to(id).emit("SEND_MESSAGE", messages)
       }

@@ -1,10 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-
-export interface ChatState {
-  users: string[],
-  messages: string[];
-}
+import { ChatState, IMessages } from '../utils/types'
 
 const initialState: ChatState = {
     users: [],
@@ -36,7 +32,9 @@ export const chatSlice = createSlice({
     .addCase(getAllUsers.fulfilled, (state: ChatState, {payload}: PayloadAction<string[]>) => {
         state.users = payload
     })
-    .addCase(getAllMessages.fulfilled, (state: ChatState, {payload}: PayloadAction<string[]>) => {
+    .addCase(getAllMessages.fulfilled, (state: ChatState, {payload}: PayloadAction<IMessages[]>) => {
+      console.log(payload);
+      
         state.messages = payload
     })
   },

@@ -1,21 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-
-export interface AuthState {
-  isAuth: boolean;
-  roomID: string;
-  userName: string;
-}
+import { AuthState, IAuthData } from '../utils/types'
 
 const initialState: AuthState = {
   isAuth: false,
   roomID: "",
   userName: "",
-}
-
-interface IAuthData {
-  roomID: string;
-  userName: string;
 }
 
 export const joinNewUser = createAsyncThunk(

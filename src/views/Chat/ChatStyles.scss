@@ -8,14 +8,11 @@
 }
 
 .MessagesBlock {
-    overflow-y: auto;
     border-left: 1px solid black;
     width: 75%;
-    padding: 20px 20px 0 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow-x: hidden;
 }
 
 .MessagesContainer {
@@ -27,7 +24,6 @@
     max-height: 50%;
     border: none;
     width: fit-content;
-    margin-bottom: 10px;
     border-radius: 4px;
     color: white;
     padding: 5px;
@@ -35,15 +31,22 @@
 }
 
 .MessageRight {
-    margin-left: 91%;
-    max-height: 50%;
     border: none;
     width: fit-content;
-    margin-bottom: 10px;
     border-radius: 4px;
     color: white;
     padding: 5px;
     background-color: green;
+}
+
+.MessageAuthorRight {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+
+.MessageAuthorLeft {
+    margin-bottom: 10px;
 }
 
 .UserName {
@@ -74,5 +77,10 @@
 .MessageRightContainer {
     display: flex;
     width: 100%;
+    justify-content: end;
+}
+
+.right {
+    display: grid;
     justify-content: end;
 }

@@ -1,13 +1,6 @@
 import React from "react"
+import { IInputGroupProps } from "../../utils/types"
 import "./InputGroupStyles.scss"
-
-interface IInputGroupProps {
-    type?: string;
-    name: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    value: string;
-    placeholder?: string;
-}
 
 const InputGroup: React.FC<IInputGroupProps> = ({type = "text", name, onChange, value, placeholder = name.toUpperCase()}) => {
     return (
