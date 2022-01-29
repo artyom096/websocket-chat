@@ -8,12 +8,12 @@ import ErrorPage from './views/ErrorPage';
 import SomethingWentWrong from './views/SomethingWentWrong';
 
 function App() {
-  const isAuth = useSelector((state: RootState) => state.auth.isAuth)
+  const isAuth = useSelector((state: RootState) => state.auth.roomID)
   const history = useNavigate()
 
   React.useEffect(() => {
     if(!isAuth){
-      history("/")
+      history("/", {replace: true})
     }
   }, [])
 
