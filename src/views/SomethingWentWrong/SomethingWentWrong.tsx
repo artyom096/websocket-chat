@@ -1,11 +1,11 @@
-import React from "react"
+import React from "react";
 
 const SomethingWentWrong = () => {
-    return (
-        <div className="container">
-            <h1>Something went wrong :(</h1>
-        </div>
-    )
-}
+  return (
+    <div className="container">
+      <h1>Something went wrong:</h1>
+    </div>
+  );
+};
 
-export default SomethingWentWrong
+export default SomethingWentWrong;

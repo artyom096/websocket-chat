@@ -1,13 +1,14 @@
 import React from "react";
+
 import { IButtonProps } from "../../utils/types";
-import "./ButtonStyles.scss"
+import "./ButtonStyles.scss";
 
-const Button: React.FC<IButtonProps> = ({children, disabled, onClick}) => {
-    return (
-        <button onClick={onClick} className="Button" disabled={disabled}>
-            {children}
-        </button>
-    )
-}
+const Button: React.FC<IButtonProps> = ({ children, disabled, onClick }) => {
+  return (
+    <button onClick={onClick} className="button" disabled={disabled}>
+      {children}
+    </button>
+  );
+};
 
-export default Button
+export default Button;

@@ -1,3 +1,3 @@
-import SendInput from "./SendInput"
+import SendInput from "./SendInput";
 
-export default SendInput
+export default SendInput;

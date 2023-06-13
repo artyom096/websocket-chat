@@ -1,15 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { useDispatch } from 'react-redux'
-import authSlice from './AuthSlice'
-import chatSlice from './ChatSlice'
+import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+
+import authSlice from "./authSlice";
+import chatSlice from "./chatSlice";
 
 export const store = configureStore({
-    reducer: {
-        auth: authSlice,
-        chat: chatSlice
-    },
-})
+  reducer: {
+    auth: authSlice,
+    chat: chatSlice,
+  },
+});
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
-export const useAppDispatch = () => useDispatch<AppDispatch>()
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();

@@ -1,32 +1,33 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { AuthState, IAuthData } from '../utils/types'
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
+
+import { AuthState, IAuthData } from "../utils/types";
 
 const initialState: AuthState = {
   isAuth: false,
   roomID: "",
   userName: "",
-}
+};
 
 export const joinNewUser = createAsyncThunk(
-  '/auth',
+  "/auth",
   async (payload: IAuthData) => {
-    await axios.post('/auth', payload)
+    await axios.post("/auth", payload);
   }
-)
+);
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
-    auth: (state, {payload}: PayloadAction<IAuthData>) => {
-      state.isAuth = true
-      state.roomID = payload.roomID
-      state.userName = payload.userName
-    }
-  }
-})
+    auth: (state, { payload }: PayloadAction<IAuthData>) => {
+      state.isAuth = true;
+      state.roomID = payload.roomID;
+      state.userName = payload.userName;
+    },
+  },
+});
 
-export const { auth } = authSlice.actions
+export const { auth } = authSlice.actions;
 
-export default authSlice.reducer
+export default authSlice.reducer;

@@ -1,88 +1,88 @@
-.UsersContainer {
-    display: flex;
-    flex-direction: column;
+.usersContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-.OnlineCounter {
-    margin-top: 5px;
+.onlineCounter {
+  margin-top: 5px;
 }
 
-.MessagesBlock {
-    border-left: 1px solid black;
-    width: 75%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.messagesBlock {
+  border-left: 1px solid black;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.MessagesContainer {
-    display: flex;
-    flex-direction: column;
+.messagesContainer {
+  display: flex;
+  flex-direction: column;
 }
 
-.MessageLeft {
-    max-height: 50%;
-    border: none;
-    width: fit-content;
-    border-radius: 4px;
-    color: white;
-    padding: 5px;
-    background-color: purple;
+.messageLeft {
+  max-height: 50%;
+  border: none;
+  width: fit-content;
+  border-radius: 4px;
+  color: white;
+  padding: 5px;
+  background-color: purple;
 }
 
-.MessageRight {
-    border: none;
-    width: fit-content;
-    border-radius: 4px;
-    color: white;
-    padding: 5px;
-    background-color: green;
+.messageRight {
+  border: none;
+  width: fit-content;
+  border-radius: 4px;
+  color: white;
+  padding: 5px;
+  background-color: green;
 }
 
-.MessageAuthorRight {
-    display: flex;
-    justify-content: end;
-    margin-bottom: 10px;
-    font-size: 14px;
+.messageAuthorRight {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 
-.MessageAuthorLeft {
-    margin-bottom: 10px;
-    font-size: 14px;
+.messageAuthorLeft {
+  margin-bottom: 10px;
+  font-size: 14px;
 }
 
-.UserName {
-    padding: 7px 0;
+.userName {
+  padding: 7px 0;
 }
 
-.RoomHeader {
-    padding-top: 10px;
-    text-align: center;
-    border-bottom: 1px solid black;
+.roomHeader {
+  padding-top: 10px;
+  text-align: center;
+  border-bottom: 1px solid black;
 }
 
-.InfoBlock {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    padding: 0 15px;
+.infoBlock {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
 }
 
-.ChatContainer {
-    border: 1px solid black;
-    height: 80vh;
-    border-radius: 4px;
-    display: flex;
-    margin: 40px;
+.chatContainer {
+  border: 1px solid black;
+  height: 80vh;
+  border-radius: 4px;
+  display: flex;
+  margin: 40px;
 }
 
-.MessageRightContainer {
-    display: flex;
-    width: 100%;
-    justify-content: end;
+.messageRightContainer {
+  display: flex;
+  width: 100%;
+  justify-content: end;
 }
 
 .right {
-    display: grid;
-    justify-content: end;
+  display: grid;
+  justify-content: end;
 }
