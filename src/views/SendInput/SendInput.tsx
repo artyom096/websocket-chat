@@ -1,9 +1,11 @@
 import React from "react";
-import "./SendInputStyles.scss";
-import Button from "../../components/Button";
-import { ISendInputProps } from "../../utils/types";
 
-const SendInput: React.FC<ISendInputProps> = ({
+import { ISendInputProps } from "utils/types";
+import { Button } from "components/Button";
+
+import "./SendInputStyles.scss";
+
+export const SendInput: React.FC<ISendInputProps> = ({
   onClick,
   onChange,
   onKeyPress,
@@ -22,5 +24,3 @@ const SendInput: React.FC<ISendInputProps> = ({
     </div>
   );
 };
-
-export default SendInput;

@@ -1,3 +1,1 @@
-import SomethingWentWrong from "./SomethingWentWrong";
-
-export default SomethingWentWrong;
+export * from "./SomethingWentWrong";

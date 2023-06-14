@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { ChatState } from "../../utils/types";
+import { ChatState } from "utils/types";
+
 import { getAllMessages, getAllUsers } from "./chatActions";
 
 const initialState: ChatState = {
@@ -14,18 +15,12 @@ const chatSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(
-        getAllUsers.fulfilled,
-        (state, { payload }) => {
-          state.users = payload;
-        }
-      )
-      .addCase(
-        getAllMessages.fulfilled,
-        (state, { payload }) => {
-          state.messages = payload;
-        }
-      );
+      .addCase(getAllUsers.fulfilled, (state, { payload }) => {
+        state.users = payload;
+      })
+      .addCase(getAllMessages.fulfilled, (state, { payload }) => {
+        state.messages = payload;
+      });
   },
 });
 

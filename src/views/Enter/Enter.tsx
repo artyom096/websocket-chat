@@ -1,12 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-import Button from "../../components/Button";
-import InputGroup from "../../components/InputGroup";
-import socket from "../../utils/socket";
-import { joinNewUser } from "../../store/auth/authActions";
-import { auth } from "../../store/auth/authSlice";
-import { useAppDispatch, useAppSelector } from "../../store/store";
+import { useAppDispatch, useAppSelector } from "store/store";
+import { joinNewUser } from "store/auth/authActions";
+import { auth } from "store/auth/authSlice";
+import { InputGroup } from "components/InputGroup";
+import { Button } from "components/Button";
+import socket from "utils/socket";
+
 import "./EnterStyles.scss";
 
 export const Enter = () => {

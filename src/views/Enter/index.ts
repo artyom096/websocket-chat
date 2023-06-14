@@ -1,3 +1,1 @@
-import Enter from "./Enter";
-
-export default Enter;
+export * from "./Enter";

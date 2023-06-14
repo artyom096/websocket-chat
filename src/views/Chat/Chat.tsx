@@ -1,14 +1,15 @@
 import React from "react";
 import { useParams } from "react-router";
 
-import SendInput from "../SendInput";
-import socket from "../../utils/socket";
-import { useAppDispatch, useAppSelector } from "../../store/store";
-import { getAllMessages, getAllUsers } from "../../store/chat/chatActions";
-import { IMessages } from "../../utils/types";
+import { useAppDispatch, useAppSelector } from "store/store";
+import { getAllMessages, getAllUsers } from "store/chat/chatActions";
+import { SendInput } from "views/SendInput";
+import socket from "utils/socket";
+import { IMessages } from "utils/types";
+
 import "./ChatStyles.scss";
 
-const Chat = () => {
+export const Chat = () => {
   const { id } = useParams();
   const messagesRef = React.useRef<HTMLDivElement>(null);
   const dispatch = useAppDispatch();
@@ -125,5 +126,3 @@ const Chat = () => {
     </div>
   );
 };
-
-export default Chat;

@@ -1,9 +1,10 @@
 import React from "react";
 
-import { IInputGroupProps } from "../../utils/types";
+import { IInputGroupProps } from "utils/types";
+
 import "./InputGroupStyles.scss";
 
-const InputGroup: React.FC<IInputGroupProps> = ({
+export const InputGroup: React.FC<IInputGroupProps> = ({
   name,
   value,
   type = "text",
@@ -24,5 +25,3 @@ const InputGroup: React.FC<IInputGroupProps> = ({
     </div>
   );
 };
-
-export default InputGroup;
