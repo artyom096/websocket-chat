@@ -11,9 +11,8 @@ import "./ChatStyles.scss";
 const Chat = () => {
   const { id } = useParams();
   const messagesRef = React.useRef<HTMLDivElement>(null);
-
   const dispatch = useAppDispatch();
-  const name = useAppSelector(state => state.auth.userName);
+  const name = useAppSelector((state) => state.auth.userName);
 
   const [users, setUsers] = React.useState<string[]>([]);
   const [userName, setUserName] = React.useState<string>(name);
@@ -25,26 +24,37 @@ const Chat = () => {
   }, []);
 
   React.useEffect(() => {
-    dispatch(getAllUsers(id as string)).then(({ payload }) =>
-      setUsers(payload)
-    );
-    dispatch(getAllMessages(id as string)).then(({ payload }) =>
-      setMessages(payload)
-    );
+    async function fetchData() {
+      const [usersPayload, messagesPayload] = await Promise.all([
+        dispatch(getAllUsers(id as string)),
+        dispatch(getAllMessages(id as string)),
+      ]);
+      setUsers(usersPayload.payload);
+      setMessages(messagesPayload.payload);
+    }
+
+    fetchData();
+  }, [id]);
+
+  React.useEffect(() => {
+    const handleMessageUpdate = (updatedMessages: IMessages[]) => {
+      setMessages(updatedMessages);
+    };
+
+    socket.on("SET_NEW_USERS", setUsers);
+    socket.on("SEND_MESSAGE", handleMessageUpdate);
+
+    return () => {
+      socket.off("SET_NEW_USERS", setUsers);
+      socket.off("SEND_MESSAGE", handleMessageUpdate);
+    };
   }, []);
 
   React.useEffect(() => {
-    socket.on("SET_NEW_USERS", (users) => {
-      setUsers(users);
+    messagesRef.current?.scroll({
+      top: messagesRef.current.scrollHeight,
+      behavior: "smooth",
     });
-
-    socket.on("SEND_MESSAGE", (messages) => {
-      setMessages(messages);
-    });
-  }, []);
-
-  React.useEffect(() => {
-    messagesRef.current?.scroll(0, messagesRef.current.scrollHeight);
   }, [messages]);
 
   const sendMessage = () => {
@@ -53,11 +63,9 @@ const Chat = () => {
     setInputValue("");
   };
 
-  const handleInputKeyPress = (e: React.KeyboardEvent<Element>) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      sendMessage();
-    }
+  const onKeyPress = ({ key }: React.KeyboardEvent<Element>) => {
+    if (key !== "Enter") return;
+    sendMessage();
   };
 
   return (
@@ -76,14 +84,7 @@ const Chat = () => {
         </div>
       </div>
       <div className="messagesBlock">
-        <div
-          ref={messagesRef}
-          style={{
-            padding: "10px 10px 0 10px",
-            maxHeight: "calc(100% - 35px)",
-            overflowY: "auto",
-          }}
-        >
+        <div ref={messagesRef} className="messages">
           <div className="messagesContainer">
             {messages.map((item, index) => {
               return (
@@ -118,9 +119,7 @@ const Chat = () => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onClick={sendMessage}
-          onKeyPress={(e: React.KeyboardEvent<Element>) =>
-            handleInputKeyPress(e)
-          }
+          onKeyPress={(e: React.KeyboardEvent<Element>) => onKeyPress(e)}
         />
       </div>
     </div>

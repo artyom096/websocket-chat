@@ -12,10 +12,10 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    auth: (state, { payload }) => {
+    auth: (state, { payload: { roomID, userName } }) => {
       state.isAuth = true;
-      state.roomID = payload.roomID;
-      state.userName = payload.userName;
+      state.roomID = roomID;
+      state.userName = userName;
     },
   },
 });

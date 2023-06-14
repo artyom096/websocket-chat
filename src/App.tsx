@@ -7,14 +7,14 @@ import ErrorPage from "./views/ErrorPage";
 import SomethingWentWrong from "./views/SomethingWentWrong";
 
 function App() {
-  const isAuth = useAppSelector(state => state.auth.isAuth);
+  const isAuthenticated = useAppSelector(state => state.auth.isAuth);
 
   return (
     <Routes>
       <Route path="/" element={<Enter />} />
       <Route
         path="/chat/:id"
-        element={isAuth ? <Chat /> : <Navigate to="/" />}
+        element={isAuthenticated ? <Chat /> : <Navigate to="/" />}
       />
       <Route path="/wrong" element={<SomethingWentWrong />} />
       <Route path="*" element={<ErrorPage />} />

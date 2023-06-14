@@ -9,40 +9,39 @@ import { auth } from "../../store/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import "./EnterStyles.scss";
 
-const Enter = () => {
-  const [userName, setUserName] = React.useState<string>("");
-  const [roomID, setRoomID] = React.useState<string>("");
-  const [loading, setLoading] = React.useState<boolean>(false);
+export const Enter = () => {
+  const [userName, setUserName] = React.useState("");
+  const [roomID, setRoomID] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector(state => state.auth.isAuth);
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
 
   React.useEffect(() => {
-    !isAuth ? navigate("/") : navigate(`/chat/${roomID}`);
+    if (!isAuth) navigate("/");
+    else navigate(`/chat/${roomID}`);
   }, [isAuth]);
 
   const joinChat = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!userName || !roomID) return;
 
-    if (userName && roomID) {
-      try {
-        setLoading(true);
-        dispatch(joinNewUser({ roomID, userName }));
-      } catch (error) {
-        navigate("/wrong");
-      } finally {
-        setLoading(false);
-      }
+    try {
+      setLoading(true);
+      dispatch(joinNewUser({ roomID, userName }));
       dispatch(auth({ roomID, userName }));
       socket.emit("JOINED", { roomID, userName });
+    } catch (error) {
+      navigate("/wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="enterContainer">
-      <form className="form" onSubmit={(e) => joinChat(e)}>
+      <form className="form" onSubmit={joinChat}>
         <div className="inputGroupContainer">
           <InputGroup
             placeholder="ROOM ID"
@@ -61,5 +60,3 @@ const Enter = () => {
     </div>
   );
 };
-
-export default Enter;

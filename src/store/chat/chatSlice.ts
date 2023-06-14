@@ -16,13 +16,13 @@ const chatSlice = createSlice({
     builder
       .addCase(
         getAllUsers.fulfilled,
-        (state: ChatState, { payload }) => {
+        (state, { payload }) => {
           state.users = payload;
         }
       )
       .addCase(
         getAllMessages.fulfilled,
-        (state: ChatState, { payload }) => {
+        (state, { payload }) => {
           state.messages = payload;
         }
       );

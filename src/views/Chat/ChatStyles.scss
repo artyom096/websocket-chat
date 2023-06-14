@@ -86,3 +86,9 @@
   display: grid;
   justify-content: end;
 }
+
+.messages {
+  padding: 10px 10px 0 10px;
+  max-height: calc(100% - 35px);
+  overflow-y: auto;
+}
