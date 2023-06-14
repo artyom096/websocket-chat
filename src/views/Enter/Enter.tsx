@@ -1,12 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import Button from "../../components/Button";
 import InputGroup from "../../components/InputGroup";
 import socket from "../../utils/socket";
-import { auth, joinNewUser } from "../../store/authSlice";
-import { RootState } from "../../store/store";
+import { joinNewUser } from "../../store/auth/authActions";
+import { auth } from "../../store/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 import "./EnterStyles.scss";
 
 const Enter = () => {
@@ -16,8 +16,8 @@ const Enter = () => {
 
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
-  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
+  const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(state => state.auth.isAuth);
 
   React.useEffect(() => {
     !isAuth ? navigate("/") : navigate(`/chat/${roomID}`);
@@ -29,7 +29,7 @@ const Enter = () => {
     if (userName && roomID) {
       try {
         setLoading(true);
-        await dispatch(joinNewUser({ roomID, userName }));
+        dispatch(joinNewUser({ roomID, userName }));
       } catch (error) {
         navigate("/wrong");
       } finally {

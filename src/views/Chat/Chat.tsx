@@ -1,11 +1,10 @@
 import React from "react";
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
 
 import SendInput from "../SendInput";
 import socket from "../../utils/socket";
-import { getAllMessages, getAllUsers } from "../../store/chatSlice";
-import { RootState, useAppDispatch } from "../../store/store";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { getAllMessages, getAllUsers } from "../../store/chat/chatActions";
 import { IMessages } from "../../utils/types";
 import "./ChatStyles.scss";
 
@@ -14,7 +13,7 @@ const Chat = () => {
   const messagesRef = React.useRef<HTMLDivElement>(null);
 
   const dispatch = useAppDispatch();
-  const name = useSelector((state: RootState) => state.auth.userName);
+  const name = useAppSelector(state => state.auth.userName);
 
   const [users, setUsers] = React.useState<string[]>([]);
   const [userName, setUserName] = React.useState<string>(name);

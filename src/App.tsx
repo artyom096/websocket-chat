@@ -1,14 +1,13 @@
-import { useSelector } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { RootState } from "./store/store";
+import { useAppSelector } from "./store/store";
 import Chat from "./views/Chat";
 import Enter from "./views/Enter";
 import ErrorPage from "./views/ErrorPage";
 import SomethingWentWrong from "./views/SomethingWentWrong";
 
 function App() {
-  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
+  const isAuth = useAppSelector(state => state.auth.isAuth);
 
   return (
     <Routes>
