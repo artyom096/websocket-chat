@@ -3,7 +3,7 @@ import React from "react";
 import { ISendInputProps } from "utils/types";
 import { Button } from "components/Button";
 
-import "./SendInputStyles.scss";
+import styles from "./SendInputStyles.module.scss";
 
 export const SendInput: React.FC<ISendInputProps> = ({
   onClick,
@@ -12,13 +12,13 @@ export const SendInput: React.FC<ISendInputProps> = ({
   value,
 }) => {
   return (
-    <div className="sendInputContainer">
+    <div className={styles.sendInputContainer}>
       <textarea
         onKeyPress={onKeyPress}
         value={value}
         onChange={onChange}
         cols={3}
-        className="sendInput"
+        className={styles.sendInput}
       />
       <Button onClick={onClick}>Отправить</Button>
     </div>

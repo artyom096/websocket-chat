@@ -8,7 +8,7 @@ import { InputGroup } from "components/InputGroup";
 import { Button } from "components/Button";
 import socket from "utils/socket";
 
-import "./EnterStyles.scss";
+import styles from "./EnterStyles.module.scss";
 
 export const Enter = () => {
   const [userName, setUserName] = React.useState("");
@@ -41,9 +41,9 @@ export const Enter = () => {
   };
 
   return (
-    <div className="enterContainer">
-      <form className="form" onSubmit={joinChat}>
-        <div className="inputGroupContainer">
+    <div className={styles.enterContainer}>
+      <form className={styles.form} onSubmit={joinChat}>
+        <div className={styles.inputGroupContainer}>
           <InputGroup
             placeholder="ROOM ID"
             name="Room"

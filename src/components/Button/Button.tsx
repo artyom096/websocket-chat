@@ -2,7 +2,7 @@ import React from "react";
 
 import { IButtonProps } from "utils/types";
 
-import "./ButtonStyles.scss";
+import styles from "./ButtonStyles.module.scss";
 
 export const Button: React.FC<IButtonProps> = ({
   children,
@@ -10,7 +10,7 @@ export const Button: React.FC<IButtonProps> = ({
   onClick,
 }) => {
   return (
-    <button onClick={onClick} className="button" disabled={disabled}>
+    <button onClick={onClick} className={styles.button} disabled={disabled}>
       {children}
     </button>
   );

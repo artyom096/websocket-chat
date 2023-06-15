@@ -7,7 +7,7 @@ import { SendInput } from "views/SendInput";
 import socket from "utils/socket";
 import { IMessages } from "utils/types";
 
-import "./ChatStyles.scss";
+import styles from "./ChatStyles.module.scss";
 
 export const Chat = () => {
   const { id } = useParams();
@@ -70,34 +70,36 @@ export const Chat = () => {
   };
 
   return (
-    <div className="chatContainer">
-      <div className="infoBlock">
-        <header className="roomHeader">Комната: {id}</header>
-        <span className="onlineCounter">Онлайн ({users?.length || 0}) :</span>
-        <div className="usersContainer">
+    <div className={styles.chatContainer}>
+      <div className={styles.infoBlock}>
+        <header className={styles.roomHeader}>Комната: {id}</header>
+        <span className={styles.onlineCounter}>
+          Онлайн ({users?.length || 0}) :
+        </span>
+        <div className={styles.usersContainer}>
           {users?.map((user, index) => {
             return (
-              <div key={user + index} className="userName">
+              <div key={user + index} className={styles.userName}>
                 {user}
               </div>
             );
           })}
         </div>
       </div>
-      <div className="messagesBlock">
-        <div ref={messagesRef} className="messages">
-          <div className="messagesContainer">
+      <div className={styles.messagesBlock}>
+        <div ref={messagesRef} className={styles.messages}>
+          <div className={styles.messagesContainer}>
             {messages.map((item, index) => {
               return (
                 <div
-                  className={item.userName === userName ? "right" : ""}
+                  className={item.userName === userName ? styles.right : ""}
                   key={index}
                 >
                   <div
                     className={
                       item.userName === userName
-                        ? "messageRight"
-                        : "messageLeft"
+                        ? styles.messageRight
+                        : styles.messageLeft
                     }
                   >
                     {item.message}
@@ -105,8 +107,8 @@ export const Chat = () => {
                   <div
                     className={
                       item.userName === userName
-                        ? "messageAuthorRight"
-                        : "messageAuthorLeft"
+                        ? styles.messageAuthorRight
+                        : styles.messageAuthorLeft
                     }
                   >
                     {item.userName}

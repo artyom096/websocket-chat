@@ -2,7 +2,7 @@ import React from "react";
 
 import { IInputGroupProps } from "utils/types";
 
-import "./InputGroupStyles.scss";
+import styles from "./InputGroupStyles.module.scss";
 
 export const InputGroup: React.FC<IInputGroupProps> = ({
   name,
@@ -12,10 +12,10 @@ export const InputGroup: React.FC<IInputGroupProps> = ({
   onChange,
 }) => {
   return (
-    <div className="inputGroupContainer">
+    <div className={styles.inputGroupContainer}>
       <label htmlFor={name}>{name}</label>
       <input
-        className="input"
+        className={styles.input}
         placeholder={placeholder}
         id={name}
         type={type}
